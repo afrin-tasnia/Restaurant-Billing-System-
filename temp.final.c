@@ -1,4 +1,4 @@
-
+#include<stdio.h>
 
 char items[10][20]={
     "Burger", "Pizza", "Pasta", "Fries", "Tacos", "Coffee", "Milk Tea",
@@ -97,4 +97,5 @@ do{
 return 0;
 
 }
+
 
