@@ -22,7 +22,9 @@ void printMenu(){
 
 int main(){
 
+int q;
 int choice;
+int item;
 struct Quantity order;
 
 for(int i=0; i<10;i++){
@@ -46,7 +48,6 @@ do{
 
         case 2: {
             printMenu();
-            int item, q;
             printf("\nEnter item number to order (1-10): ");
             scanf("%d", &item);
 
@@ -60,17 +61,21 @@ do{
             order.qty[item-1] +=q;
             printf("Item added successfully!\n");
             break;
+            }
 
         case 3:
         case 4:
+            {
             printf("\n-------FINAL BILL-------\n");
             printf("------------------------\n");
 
             float total=0.0;
             for(int i=0; i<10; i++){
+                if(order.qty[i]>0){
                 float cost = price[i]*order.qty[i];
                 printf("%s x %d - BDT %.2f\n", items[i], order.qty[i],cost);
                 total+=cost;
+                }
             }
 
             printf("------------------------\n");
@@ -82,12 +87,14 @@ do{
             break;
         }
 
-        default:
+        default :
             printf("Invalid choice! Please select between 1 to 4.");
     }
+
 
 }while(choice!=4);
 
 return 0;
 
 }
+
