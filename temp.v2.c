@@ -14,9 +14,10 @@ struct Quantity {
 };
 
 void printMenu(){
-    printf("\n\n-----------Menu-----------\n");
+    printf("\n\n-----------MENU-----------\n");
+    printf("--------------------------\n");
     for(int i=0; i<10;i++){
-        printf("%d.%-10s - BDT %.2f\n", i+1, items[i],price[i]);
+        printf("%2d.%-10s - BDT %6.2f\n", i+1, items[i],price[i]);
     }
     printf("\n");
 }
@@ -35,12 +36,12 @@ for(int i=0; i<10;i++){
     printf("===========================");
 
 do{
-    printf("\n\tMain Menu\t\n");
+    printf("\n---------MAIN MENU---------\n");
     printf("---------------------------\n");
-    printf("1. Show Menu\n");
-    printf("2. Add Order\n");
-    printf("3. View Bill\n");
-    printf("4. Checkout and exit\n");
+    printf("1.Show Menu\n");
+    printf("2.Add Order\n");
+    printf("3.View Bill\n");
+    printf("4.Checkout and exit\n");
     printf("\nEnter your choice: ");
     scanf("%d", &choice);
 
@@ -76,13 +77,13 @@ do{
             for(int i=0; i<10; i++){
                 if(order.qty[i]>0){
                 float cost = price[i]*order.qty[i];
-                printf("%-10s x %d - BDT %.2f\n", items[i], order.qty[i],cost);
+                printf("%-10s x %d - BDT %7.2f\n", items[i], order.qty[i],cost);
                 total+=cost;
                 }
             }
 
             printf("----------------------------\n");
-            printf("Total Bill: BDT %.2f\n\n",total);
+            printf("Total Bill: BDT %7.2f\n\n",total);
 
             if(choice==4){
                 printf("\nThank you! Please visit us again.\n\n");
