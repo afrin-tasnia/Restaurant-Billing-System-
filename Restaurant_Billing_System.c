@@ -52,19 +52,42 @@ do{
             break;
 
         case 2: {
+            char more='y';
             do{
             printMenu();
+            int itemsArray[10];
+            int count=0;
+            char line[200];
+
+            while ((getchar()) != '\n' && getchar() != EOF);
+
             printf("\nEnter item number to order (1-10): ");
-            scanf("%d", &item);
+            fgets(line, sizeof(line), stdin);
 
-            if (item<1 || item>10){
-                printf("Invalid item number!\n");
-                break;
+            char *token = strtok(line, " \t\n");
+            while (token != NULL && count < 10) {
+            int n = atoi(token);
+            if (n == 0) break;
+            if (n < 1 || n > 10) {
+                printf("Invalid item number: %d\n", n);
+            } else {
+                itemsArray[count++] = n;
             }
+            token = strtok(NULL, " \t\n");
+        }
 
-            printf("Enter quantity: ");
-            scanf("%d", &q);
-            order.qty[item-1] +=q;
+            for(int i=0;i<count;i++) {
+                int quantity;
+                printf("Enter quantity for %s: ",items[itemsArray[i]-1]);
+                scanf("%d",&quantity);
+                if(quantity<=0) {
+                    printf("Invalid quantity!",items[itemsArray[i]-1]);
+                    continue;
+                }
+                 order.qty[itemsArray[i]-1] +=quantity;
+            }
+             while ((getchar()) != '\n' && getchar() != EOF);
+
             printf("Item added successfully!\n");
             printf("Do you want to order more? (y/n): ");
             scanf(" %c", &more);
@@ -105,5 +128,4 @@ do{
 return 0;
 
 }
-
 
